@@ -32,6 +32,11 @@ class BaseClassifier(ABC):
         """
         raise NotImplementedError
 
+    def predict_long(self, x):
+        prob = self.predict(x)
+        predicted_class = np.argmax(prob)
+        prob_str = np.array2string(prob).replace('\n','')
+        return(prob, predicted_class, prob_str)
 
     @property
     def nb_classes(self):
@@ -96,12 +101,6 @@ class KerasClassifier(BaseClassifier):
         returns classes instead of probabilities
         """
         return(self._model.predict_classes(x, verbose=verbose))
-
-    def predict_long(self, x):
-        prob = self.predict(x)
-        predicted_class = np.argmax(prob)
-        prob_str = np.array2string(prob).replace('\n','')
-        return(prob, predicted_class, prob_str)
 
     def predictsym(self, x):
         return self._model(x)

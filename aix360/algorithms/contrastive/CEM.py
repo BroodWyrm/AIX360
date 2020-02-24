@@ -2,6 +2,7 @@ from __future__ import print_function
 
 from aix360.algorithms.lwbe import LocalWBExplainer
 
+from .classifiers import BaseClassifier
 from .CEM_aen import AEADEN
 
 import random
@@ -23,7 +24,7 @@ class CEMExplainer(LocalWBExplainer):
            Advances in Neural Information Processing Systems (NeurIPS), 2018.
            <https://arxiv.org/abs/1802.07623>`_
     """
-    def __init__(self, model):
+    def __init__(self, model: BaseClassifier):
 
         """
         Constructor method, initializes the explainer
