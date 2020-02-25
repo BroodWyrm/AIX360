@@ -2,6 +2,7 @@ import abc
 import sys
 import numpy as np
 
+from sklearn.base import ClassifierMixin
 
 # compatibility with Python 2 and 3 when using ABCMeta
 if sys.version_info >= (3, 4):
@@ -104,3 +105,12 @@ class KerasClassifier(BaseClassifier):
 
     def predictsym(self, x):
         return self._model(x)
+
+
+class SklearnClassifier(BaseClassifier):
+    def __init__(self, model: ClassifierMixin):
+        self._model = model
+        self._nb_classes = len(model.classes_)
+
+    def predict(self, x, verbose=0):
+        return self._model.predict_proba(x)

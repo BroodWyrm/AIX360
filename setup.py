@@ -32,6 +32,7 @@ setuptools.setup(
             'tensorflow==1.14',
             'xport',
             'scikit-image',
+            'scikit-learn',
             'requests',
             'lime',
             'shap',

@@ -3,10 +3,12 @@ import numpy as np
 import tensorflow as tf
 import keras.backend as K
 
+from .classifiers import BaseClassifier
+
 
 class AEADEN:
 
-    def __init__(self, model, shape, mode, AE, batch_size, kappa, init_learning_rate,
+    def __init__(self, model: BaseClassifier, shape, mode, AE, batch_size, kappa, init_learning_rate,
                  binary_search_steps, max_iterations, initial_const, beta, gamma):
         
         """
@@ -26,7 +28,7 @@ class AEADEN:
             gamma (double): Weighting of auto-encoder
         """
 
-        num_classes = model._nb_classes
+        num_classes = model.nb_classes
         tf_sum = list(range(1, len(shape)))
 
         self.sess = K.get_session()
